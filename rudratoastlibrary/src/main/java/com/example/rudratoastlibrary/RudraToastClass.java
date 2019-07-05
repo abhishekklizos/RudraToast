@@ -93,9 +93,9 @@ public class RudraToastClass {
         if (isAppInstalled(context, packageName))
             if (isAppEnabled(context, packageName)){
 
-                Intent intent=context.getPackageManager().getLaunchIntentForPackage(packageName);
-                intent.putExtra("AppName","com.example.myapplication");
-                context.startActivity(intent);
+
+
+                context.startActivity(context.getPackageManager().getLaunchIntentForPackage(packageName));
             }
 
             else {Toast.makeText(context, appName + " app is not enabled.", Toast.LENGTH_SHORT).show();}
