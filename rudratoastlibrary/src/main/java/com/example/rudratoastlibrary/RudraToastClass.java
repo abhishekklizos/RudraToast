@@ -20,43 +20,6 @@ public class RudraToastClass {
 
      listener=clickListener;
 
-//        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        //Uncomment the below code to Set the message and title from the strings.xml file
-        builder.setMessage("Login to SSID") .setTitle("SSID");
-
-
-        //Setting message manually and performing action on button click
-        builder.setMessage("Do you want to close this application ?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        listener.onDialogImageRunClick("Hogaya re Baba");
-
-                        Toast.makeText(context,"you choose yes action for alertbox",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'NO' Button
-                        listener.onDialogImageRunClick("Hogaya re Baba,Chaap kyo leta hai");
-                        dialog.cancel();
-
-                        Toast.makeText(context,"you choose no action for alertbox",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        //Creating dialog box
-        AlertDialog alert = builder.create();
-        //Setting the title manually
-
-        alert.show();
-
-
         // Create custom dialog object
         final Dialog dialog = new Dialog(context);
         // Include dialog.xml file
