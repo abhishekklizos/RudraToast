@@ -17,6 +17,7 @@ public class RudraToastClass {
         //Uncomment the below code to Set the message and title from the strings.xml file
         builder.setMessage("Login to SSID") .setTitle("SSID");
 
+
         //Setting message manually and performing action on button click
         builder.setMessage("Do you want to close this application ?")
                 .setCancelable(false)
