@@ -3,10 +3,12 @@ package com.example.rudratoastlibrary;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -34,6 +36,7 @@ public class RudraToastClass {
 
     public static void s(final Context context, String message,OnDialogClickListener clickListener){
      listener=clickListener;
+
 
 
 
@@ -87,10 +90,13 @@ public class RudraToastClass {
 
     public static void openApp(Context context, String appName, String packageName) {
         if (isAppInstalled(context, packageName))
-            if (isAppEnabled(context, packageName))
+            if (isAppEnabled(context, packageName)){
+
                 context.startActivity(context.getPackageManager().getLaunchIntentForPackage(packageName));
-            else Toast.makeText(context, appName + " app is not enabled.", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(context, appName + " app is not installed.", Toast.LENGTH_SHORT).show();
+            }
+
+            else {Toast.makeText(context, appName + " app is not enabled.", Toast.LENGTH_SHORT).show();}
+        else {Toast.makeText(context, appName + " app is not installed.", Toast.LENGTH_SHORT).show();}
     }
 
 
@@ -116,5 +122,15 @@ public class RudraToastClass {
         }
         return appStatus;
     }
+
+    public static class ActionReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("com.android.test2.Main2method".equalsIgnoreCase(intent.getAction())) {
+                listener.onDialogImageRunClick("Hogaya re Baba");
+            }
+        }
+    }
+
 
 }
