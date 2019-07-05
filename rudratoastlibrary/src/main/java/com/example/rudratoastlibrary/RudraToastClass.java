@@ -35,6 +35,7 @@ public class RudraToastClass {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+
         //Creating dialog box
         AlertDialog alert = builder.create();
         //Setting the title manually
