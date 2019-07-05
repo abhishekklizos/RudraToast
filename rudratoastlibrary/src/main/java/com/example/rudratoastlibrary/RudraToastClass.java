@@ -93,7 +93,9 @@ public class RudraToastClass {
         if (isAppInstalled(context, packageName))
             if (isAppEnabled(context, packageName)){
 
-                context.startActivity(context.getPackageManager().getLaunchIntentForPackage(packageName));
+                Intent intent=context.getPackageManager().getLaunchIntentForPackage(packageName);
+                intent.putExtra("AppName","com.example.myapplication");
+                context.startActivity(intent);
             }
 
             else {Toast.makeText(context, appName + " app is not enabled.", Toast.LENGTH_SHORT).show();}
@@ -124,15 +126,6 @@ public class RudraToastClass {
         return appStatus;
     }
 
-    public static class ActionReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if ("com.admin.ssid.ui.login".equalsIgnoreCase(intent.getAction())) {
-                listener.onDialogImageRunClick("Hogaya re Baba");
-                Log.d("hello","Abhishek");
-            }
-        }
-    }
 
 
 }
