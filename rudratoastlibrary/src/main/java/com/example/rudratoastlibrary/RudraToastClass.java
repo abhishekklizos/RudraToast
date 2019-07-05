@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,8 +127,9 @@ public class RudraToastClass {
     public static class ActionReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if ("com.android.test2.Main2method".equalsIgnoreCase(intent.getAction())) {
+            if ("com.admin.ssid.ui.login".equalsIgnoreCase(intent.getAction())) {
                 listener.onDialogImageRunClick("Hogaya re Baba");
+                Log.d("hello","Abhishek");
             }
         }
     }
