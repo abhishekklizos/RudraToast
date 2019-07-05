@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.abhishekklizos'
 
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
