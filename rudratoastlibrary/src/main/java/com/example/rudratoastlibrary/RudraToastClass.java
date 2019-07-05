@@ -32,6 +32,7 @@ public class RudraToastClass {
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listener.onDialogImageRunClick("Hogaya re Baba");
                 // Close dialog
                 dialog.dismiss();
 
