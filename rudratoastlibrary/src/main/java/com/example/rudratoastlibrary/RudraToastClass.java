@@ -13,7 +13,7 @@ public class RudraToastClass {
 
 //        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
 
-        AlertDialog.Builder builder = null;
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         //Uncomment the below code to Set the message and title from the strings.xml file
         builder.setMessage("Login to SSID") .setTitle("SSID");
 
