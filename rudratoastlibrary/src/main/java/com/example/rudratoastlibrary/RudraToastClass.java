@@ -43,7 +43,7 @@ public class RudraToastClass {
                 Intent sendIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,"com.rudratoast");
+                sendIntent.putExtra(Intent.EXTRA_TEXT,"com.example.myapplication");
                 sendIntent.setType("text/plain");
                 context.startActivity(sendIntent);
             }
