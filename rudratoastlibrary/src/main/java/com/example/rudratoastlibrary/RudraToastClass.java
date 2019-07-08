@@ -1,83 +1,31 @@
 package com.example.rudratoastlibrary;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 public class RudraToastClass {
-    static Dialog myDialog;
+
+    public static void getvalidate(Intent success,Activity activity,OnDialogClickListener clickListener) {
+
+        handleSendText(success,activity,clickListener);
+
+    }
 
     public interface OnDialogClickListener {
         void onDialogImageRunClick(String success);
     }
+
     static OnDialogClickListener listener;
 
-    public static void s(final Context context, String message,OnDialogClickListener clickListener){
+
+    public static void s(final Context context, String packg,OnDialogClickListener clickListener){
      listener=clickListener;
-
-
-
-
         abhis(context);
-
-//        // Create custom dialog object
-//        final Dialog dialog = new Dialog(context);
-//        // Include dialog.xml file
-//        dialog.setContentView(R.layout.dialog);
-//
-//        dialog.show();
-//
-//        Button declineButton = (Button) dialog.findViewById(R.id.button);
-//        // if decline button is clicked, close the custom dialog
-//        declineButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                listener.onDialogImageRunClick("Hogaya re Baba");
-//                // Close dialog
-//                dialog.dismiss();
-//
-//            }
-//        });
-
-
-//        myDialog = new Dialog(context);
-//        myDialog.setContentView(R.layout.dialog);
-//        Button declineButton = (Button) myDialog.findViewById(R.id.button);
-//        declineButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                listener.onDialogImageRunClick("Hogaya re Baba");
-//
-//                Intent intent = new Intent(Intent.ACTION_MAIN);
-//                intent.setComponent(new ComponentName("com.admin.ssid","com.admin.ssid.ui.login"));
-//                context.startActivity(intent);
-//            }
-//        });
-//        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        myDialog.show();
     }
 
 
@@ -92,14 +40,10 @@ public class RudraToastClass {
     public static void openApp(Context context, String appName, String packageName) {
         if (isAppInstalled(context, packageName))
             if (isAppEnabled(context, packageName)){
-
-
-//                context.startActivity(context.getPackageManager().getLaunchIntentForPackage(packageName).putExtra("AppName","com.example.myapplication"));
-
                 Intent sendIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,"com.example.myapplication");
+                sendIntent.putExtra(Intent.EXTRA_TEXT,"com.rudratoast");
                 sendIntent.setType("text/plain");
                 context.startActivity(sendIntent);
             }
@@ -133,5 +77,31 @@ public class RudraToastClass {
     }
 
 
+    static void handleSendText(Intent intent,Activity activity,OnDialogClickListener clickListener) {
+
+         intent = activity.getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+//        myDialog = new Dialog(this);
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+
+                Log.d("Abhsihe",""+sharedText);
+//               new  Acynk.RetrieveFeedTask().execute();
+                clickListener.onDialogImageRunClick(sharedText);
+
+            } else if (type.startsWith("image/")) {
+
+            }
+        } else if (Intent.ACTION_SEND_MULTIPLE.equals(action) && type != null) {
+            if (type.startsWith("image/")) {
+
+            }
+        } else {
+            // Handle other intents, such as being started from the home screen
+        }
+
+    }
 
 }
