@@ -1,11 +1,16 @@
 package com.example.rudratoastlibrary;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RudraToastClass {
@@ -79,7 +84,7 @@ public class RudraToastClass {
 
     static void handleSendText(Intent intent,Activity activity,OnDialogClickListener clickListener) {
 
-         intent = activity.getIntent();
+       intent = activity.getIntent();
         String action = intent.getAction();
         String type = intent.getType();
 //        myDialog = new Dialog(this);
@@ -89,7 +94,9 @@ public class RudraToastClass {
 
                 Log.d("Abhsihe",""+sharedText);
 //               new  Acynk.RetrieveFeedTask().execute();
-                clickListener.onDialogImageRunClick(sharedText);
+
+                showPopup(activity,sharedText,clickListener);
+
 
             } else if (type.startsWith("image/")) {
 
@@ -103,5 +110,31 @@ public class RudraToastClass {
         }
 
     }
+
+
+    public static void showPopup(Activity context, final String sharedText, final OnDialogClickListener clickListener){
+
+        final Dialog dialog = new Dialog(context);
+        // Include dialog.xml file
+        dialog.setContentView(R.layout.dialog);
+        // Set dialog title
+        dialog.setTitle("Custom Dialog");
+
+        // set values for custom dialog components - text, image and button
+
+        dialog.show();
+
+        Button declineButton = (Button) dialog.findViewById(R.id.button);
+        // if decline button is clicked, close the custom dialog
+        declineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Close dialog
+                clickListener.onDialogImageRunClick(sharedText);
+                dialog.dismiss();
+            }
+        });
+    }
+
 
 }
