@@ -14,7 +14,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,8 +27,6 @@ import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.util.ArrayList;
-
 public class RudraToastClass {
     static Dialog myDialog;
 
@@ -38,28 +35,9 @@ public class RudraToastClass {
     }
     static OnDialogClickListener listener;
 
-    public static void s(final Activity context, String message,OnDialogClickListener clickListener){
+    public static void s(final Context context, String message,OnDialogClickListener clickListener){
      listener=clickListener;
 
-
-        Intent intent = context.getIntent();
-        String action = intent.getAction();
-        String type = intent.getType();
-//        myDialog = new Dialog(this);
-
-        if (Intent.ACTION_SEND.equals(action) && type != null) {
-            if ("text/plain".equals(type)) {
-                handleSendText(intent); // Handle text being sent
-            } else if (type.startsWith("image/")) {
-                handleSendImage(intent); // Handle single image being sent
-            }
-        } else if (Intent.ACTION_SEND_MULTIPLE.equals(action) && type != null) {
-            if (type.startsWith("image/")) {
-                handleSendMultipleImages(intent); // Handle multiple images being sent
-            }
-        } else {
-            // Handle other intents, such as being started from the home screen
-        }
 
 
 
@@ -124,8 +102,6 @@ public class RudraToastClass {
                 sendIntent.putExtra(Intent.EXTRA_TEXT,"com.example.myapplication");
                 sendIntent.setType("text/plain");
                 context.startActivity(sendIntent);
-
-
             }
 
             else {Toast.makeText(context, appName + " app is not enabled.", Toast.LENGTH_SHORT).show();}
@@ -157,31 +133,5 @@ public class RudraToastClass {
     }
 
 
-    static void handleSendText(Intent intent) {
-        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
-
-
-        if (sharedText != null) {
-            // Update UI to reflect text being shared
-            Log.d("Abhsihe","Nandita"+sharedText);
-            listener.onDialogImageRunClick(sharedText);
-
-
-        }
-    }
-
-    static void handleSendImage(Intent intent) {
-        Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-        if (imageUri != null) {
-            // Update UI to reflect image being shared
-        }
-    }
-
-    static void handleSendMultipleImages(Intent intent) {
-        ArrayList<Uri> imageUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-        if (imageUris != null) {
-            // Update UI to reflect multiple images being shared
-        }
-    }
 
 }
