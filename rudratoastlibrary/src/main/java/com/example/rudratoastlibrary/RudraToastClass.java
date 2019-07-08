@@ -124,9 +124,11 @@ public class RudraToastClass {
 
         dialog.show();
 
-        Button declineButton = (Button) dialog.findViewById(R.id.button);
+        Button declineButton = (Button) dialog.findViewById(R.id.textView5);
+        Button acceptButton = (Button) dialog.findViewById(R.id.button);
+
         // if decline button is clicked, close the custom dialog
-        declineButton.setOnClickListener(new View.OnClickListener() {
+        acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Close dialog
@@ -134,6 +136,14 @@ public class RudraToastClass {
                 dialog.dismiss();
             }
         });
+        declineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+                dialog.dismiss();
+            }
+        });
+
     }
 
 
