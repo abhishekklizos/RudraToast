@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rudratoastlibrary">
 
-    <application></application>
+    <application>
+        <activity android:name=".ExamoActivity"></activity>
+    </application>
 
 </manifest>
